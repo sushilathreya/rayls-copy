@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rayls - Blockchain Infrastructure for Finance</title>
+    <style>
+        :root {
+            --yellow: #f2f756;
+            --purple-light: #e2d8ff;
+            --white: #ffffff;
+            --black: #000000;
+            --dark-gray: #333333;
+            --light-gray: #f0f1f5;
+            --card-purple: #e6e0fa;
+            --card-yellow: #f7f8c3;
+            --card-green: #e0f5e9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background-color: var(--white);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-weight: bold;
+            font-size: 1.8rem;
+            text-decoration: none;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 0.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.7;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: var(--yellow);
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content {
+            width: 40%;
+            padding-right: 2rem;
+        }
+        
+        .hero-video {
+            width: 40%;
+            background-color: var(--black);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 90%;
+            line-height: 1.6;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--black);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .btn-secondary {
+            border: 1px solid var(--black);
+            color: var(--black);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn svg {
+            margin-left: 0.5rem;
+        }
+        
+        /* Wave Background */
+        .wave-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .wave {
+            position: absolute;
+            background-color: var(--purple-light);
+            height: 40px;
+            width: 100%;
+            transform-origin: left;
+        }
+        
+        /* Partners Section */
+        .partners {
+            padding: 3rem 2rem;
+            background-color: var(--white);
+        }
+        
+        .partners-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .partners h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+        
+        .partner-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .partner-logo {
+            /* height: 30px; */
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            opacity: 1;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            background-color: var(--light-gray);
+        }
+        
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .features-header {
+            margin-bottom: 4rem;
+        }
+        
+        .features-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-cards {
+            display: flex;
+            /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+            flex-direction: row;
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        
+        .feature-card-header {
+            padding: 2rem 2rem 0;
+        }
+        
+        .feature-card-body {
+            padding: 2rem;
+        }
+        
+        .feature-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.3rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-tag svg {
+            margin-right: 0.5rem;
+        }
+        
+        .feature-logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-card a {
+            display: inline-flex;
+            align-items: center;
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .feature-card a svg {
+            margin-left: 0.5rem;
+        }
+        
+        .card-purple {
+            background-color: var(--card-purple);
+        }
+        
+        .card-yellow {
+            background-color: var(--card-yellow);
+        }
+        
+        .card-green {
+            background-color: var(--card-green);
+        }
+        
+        /* Ecosystem Section */
+        .ecosystem {
+            padding: 4rem 2rem;
+            background-color: var(--white);
+        }
+        
+        .ecosystem-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .ecosystem-carousel {
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-top: 3rem;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            gap: 1rem;
+            padding-bottom: 2rem;
+        }
+        
+        .ecosystem-carousel::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .carousel-card {
+            min-width: 300px;
+            background-color: var(--dark-gray);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .carousel-card img {
+            max-width: 150px;
+            margin-bottom: 2rem;
+        }
+        
+        .carousel-card h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .card-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-top: 1rem;
+        }
+        
+        /* Slider Navigation */
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.1);
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        
+        .dot.active {
+            background-color: var(--black);
+        }
+        
+        /* Why Rayls Section */
+        .why-rayls {
+            padding: 4rem 2rem;
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+        
+        .why-rayls-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .why-rayls h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .rayls-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .rayls-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 6rem 2rem;
+            background-color: var(--black);
+            color: var(--white);
+        }
+        
+        .cta-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cta-left {
+            max-width: 50%;
+        }
+        
+        .cta-right {
+            text-align: right;
+        }
+        
+        .cta h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--yellow);
+        }
+        
+        .cta p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+        
+        .cta-btns {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-white {
+            background-color: var(--white);
+            color: var(--black);
+        }
+        
+        .btn-outline {
+            border: 1px solid var(--white);
+            color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
+            background-color: var(--black);
+            color: var(--white);
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-left {
+            max-width: 350px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo svg {
+            margin-right: 0.5rem;
+        }
+        
+        .footer-logo span {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .footer-newsletter p {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .footer-right {
+            display: flex;
+            gap: 4rem;
+        }
+        
+        .footer-column {
+            min-width: 120px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: none;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Mobile menu */
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: none;
+            padding: 0.5rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-container {
+                flex-direction: column;
+            }
+            
+            .hero-content, .hero-video {
+                width: 100%;
+            }
+            
+            .hero-content {
+                margin-bottom: 2rem;
+                padding-right: 0;
+            }
+            
+            .cta-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cta-left {
+                max-width: 100%;
+                margin-bottom: 2rem;
+            }
+            
+            .cta p {
+                max-width: 100%;
+            }
+            
+            .cta-btns {
+                justify-content: center;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-left {
+                max-width: 100%;
+                margin-bottom: 3rem;
+            }
+            
+            .footer-right {
+                flex-wrap: wrap;
+            }
+            
+            .footer-column {
+                margin-left: 0;
+                margin-right: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav.active {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                z-index: 100;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0.8rem 0;
+                margin-left: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .feature-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .rayls-features {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-btns, .cta-btns {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Animation classes */
+        .animated {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .animated.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+        
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+        
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+        
+        .delay-400 {
+            transition-delay: 0.4s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <svg class="logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 5L19 12L12 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Rayls
+            </a>
+            <button class="mobile-menu-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 6H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 18H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#">Ecosystem</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#">Institutions</a></li>
+                    <li><a href="#">Developers</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li class="dropdown">
+                        <a href="#">Resources</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="wave-bg">
+            <div class="wave" style="top: 20%; transform: rotate(2deg) scaleX(1.2);"></div>
+            <div class="wave" style="top: 30%; transform: rotate(-1deg) scaleX(1.4);"></div>
+            <div class="wave" style="top: 40%; transform: rotate(1.5deg) scaleX(1.6);"></div>
+            <div class="wave" style="top: 50%; transform: rotate(-2deg) scaleX(1.3);"></div>
+            <div class="wave" style="top: 60%; transform: rotate(1deg) scaleX(1.5);"></div>
+            <div class="wave" style="top: 70%; transform: rotate(-1.5deg) scaleX(1.7);"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-video animated delay-200">
+                <div style="width: 40%; height: 0; padding-bottom: 56.25%; background-color: black; border-radius: 8px; margin-right: 20px;">
+                    <div class="play-button">
+                        <svg width="18" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 8L16 12L10 16V8Z" fill="black" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-content animated" style="margin-left: 160px;">
+                <h1>The blockchain for banks</h1>
+                <p>Rayls is a fast, permissionless, compliant EVM blockchain that aims to bring $100 trillion liquidity and 6 billion bank customers onchain</p>
+                <div class="hero-btns">
+                    <a href="#" class="btn btn-primary">
+                        Contact an expert
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 5L19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        Learn more
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 5L19 12L12 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners">
+        <div class="partners-container">
+            <h2>Live with</h2>
+            <div class="partner-logos">
+                <div class="partner-logo"><img style="width:200px; height:auto;"src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/J_P_Morgan_Logo_2008.svg/2560px-J_P_Morgan_Logo_2008.svg.png"></div>
+                <div class="partner-logo"><img style="width:200px; height:auto;"src="https://cdn.prod.website-files.com/66432022ae18f5139dbedfbf/67c228d1e9213986ab67175c_logo-nuclea-p-500.png"></div>
+                <div class="partner-logo"><img style="width:200px; height:auto"src="https://logos-download.com/wp-content/uploads/2018/01/Banco_Central_do_Brasil_logo.png"></div>
+                <div class="partner-logo"><img style="width:200px; height:auto"src="https://www.pointzeroforum.com/hubfs/PZF-2023/Logos%20200%20x%20400/Innovation%20Tour/Innovation%20Tour%20-%20BIS%20Innovation%20Hub.png"></div>
+                <!-- <div class="partner-logo">ALEXIA VENTURES</div>
+                <div class="partner-logo">VENTURE BUILDER</div>
+                <div class="partner-logo">NÚCLEA</div>
+                <div class="partner-logo">accenture</div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <div class="features-header">
+                <h2 class="features-title">Real-World Assets driving institutional growth into DeFi</h2>
+            </div>
+            <div class="feature-cards">
+                <div class="feature-card animated">
+                    <div class="feature-card-header card-purple">
+                        <div class="feature-tag">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2"/>
+                                <path d="M8 12L11 15L16 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Commercial receivables
+                        </div>
+                    </div>
+                    <!-- <path d="M8 12L11 15L16 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> -->
+                            <!-- </svg> -->
+                        <!-- </div> -->
+                        
+                    <!-- </div> -->
+                    
+                    <div class="feature-card-body">
+                        <div class="feature-logo">NÚCLEA</div>
+                        <h3>Unlocking RWA yield and liquidity for financial institutions</h3>
+                        <p>Núclea, Brazil's largest payment FMI, powers over 150 financial institutions and processes the backbone of the country's payment system. With Rayls, Núclea is revolutionising commercial receivables, unlocking new yield opportunities.</p>
+                        <a href="#">
+                            Learn more
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5L19 12L12 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="feature-card animated delay-100">
+                    <div class="feature-card-header card-yellow">
+                        <div class="feature-tag">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2"/>
+                                <path d="M8 12L11 15L16 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Fund Tokenisation
+                        </div>
+                    </div>
+                    <div class="feature-card-body">
+                        <div class="feature-logo">kinexys @ JPMorgan</div>
+                        <h3>Privacy, identity, and composability in tokenised funds</h3>
+                        <p>Project EPIC, a Kinexys by J.P. Morgan report, validated Rayls proof of concepts in fund tokenisation: enabling privacy-focused transactions, automating AML/KYC processes, and providing a flexible infrastructure for evolving financial applications.</p>
+                        <a href="#">
+                            Explore more
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5L19 12L12 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="feature-card animated delay-200">
+                    <div class="feature-card-header card-green">
+                        <div class="feature-tag">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2"/>
+                                <path d="M8 12L11 15L16 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Tokenised Deposites
+                        </div>
+                    </div>
+                    <div class="feature-card-body">
+                        <div class="feature-logo">BANCO CENTRAL DO BRASIL</div>
+                        <h3>Driving privacy and scalability in CBDC transactions</h3>
+                        <p>Bacen has selected Rayls Privacy Solution for the Drex pilot, setting the stage for a fully integrated, compliant, and scalable ecosystem. Together, we are reshaping payments with tokenised deposits, CBDCs, and DVP settlements.</p>
+                        <a href="#">
+                            Discover more
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5L19 12L12 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="feature-card animated delay-300">
+                    <div class="feature-card-header card-yellow">
+                        <div class="feature-tag">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2"/>
+                                <path d="M8 12L11 15L16 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                    <!-- <div class="feature-card-header card-purple">
+                        <div class="feature-tag">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2"/>
+                                <path d="M8 12L11 15L16 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg> -->
+                            Interoperable Infrastructure
+                        </div>
+                    </div>
+                    <div class="feature-card-body">
+                        <div class="feature-logo">BIS</div>
+                        <h3>Seamless global transactions with Rayls Subnets</h3>
+                        <p>Rayls' pioneering solution, showcased at the prestigious G20 Tech Sprint, is redefining global payments by integrating CBDCs, tokenised deposits, and digital assets - unlocking limitless financial opportunities worldwide.</p>
+                        <a href="#">
+                            Find out more
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5L19 12L12 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Rayls Section -->
+    <section class="why-rayls">
+        <div class="why-rayls-container">
+            <h2>Why Rayls?</h2>
+            <div class="rayls-features">
+                <div class="rayls-feature">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 5L19 12L12 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span>Bringing banks onchain</span>
+                </div>
+                <div class="rayls-feature">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 5L19 12L12 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span>Liquidity for DeFi</span>
+                </div>
+                <div class="rayls-feature">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 5L19 12L12 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span>Privacy and Compliance built in</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Section -->
+    <section class="ecosystem">
+        <div class="ecosystem-container">
+            <h2 class="features-title">Connecting DeFi Innovation to bank liquidity</h2>
+            <p>Rayls brings together world-class DeFi infrastructure with compliance, security, and scalability. Discover the global network of partners, dApps, validators and builders.</p>
+            
+            <div class="ecosystem-carousel animated">
+                <div class="carousel-card">
+                    <img src="images/AF_white.png" alt="Arbitrum Foundation Logo" height="30px">
+                    <h3>Arbitrum</h3>
+                    <div class="card-tag">Infrastructure</div>
+                </div>
+                <div class="carousel-card">
+                    <img src="images/lfdt-horizontal-white.png" alt="LF Decentralized Trust Logo" height="30px">
+                    <h3>LF Decentralized Trust</h3>
+                    <div class="card-tag">Membership</div>
+                </div>
+                <div class="carousel-card">
+                    <img src="images/ma_symbol_opt_73_3x.png" alt="Mastercard Logo" height="30px">
+                    <h3>Mastercard</h3>
+                    <div class="card-tag">Accelerator</div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners">
+        <div class="partners-container">
+            <h2>Proudly backed by</h2>
+            <div class="partner-logos">
+                <div class="partner-logo">Framework</div>
+                <div class="partner-logo">ParaFi</div>
+                <div class="partner-logo">VALOR</div>
+                <div class="partner-logo">ALEXIA VENTURES</div>
+                <div class="partner-logo">VENTURE BUILDER</div>
+                <div class="partner-logo">NÚCLEA</div>
+                <div class="partner-logo">accenture</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <div class="cta-left">
+                <h2>The blockchain for banks</h2>
+                <p>Aiming to bring $100 trillion liquidity and 6 billion bank customers onchain with a fast, permissionless, and compliant EVM L2</p>
+            </div>
+            <div class="cta-right">
+                <div class="cta-btns">
+                    <a href="#" class="btn btn-white">
+                        Explore the product
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 5L19 12L12 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="btn btn-outline">
+                        Talk to an expert
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 5L19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 5L19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Rayls</span>
+                </div>
+                <div class="footer-newsletter">
+                    <p>Join our newsletter to stay up to date with Rayls.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon">
+                            <svg width="16" height="16" fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 5H4C3.448 5 3 5.448 3 6V18C3 18.552 3.448 19 4 19H20C20.552 19 21 18.552 21 18V6C21 5.448 20.552 5 20 5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 6L12 14L21 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg width="16" height="16" fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23 3.01006C22.0424 3.68553 20.9821 4.20217 19.86 4.54006C19.2577 3.84757 18.4573 3.35675 17.567 3.13398C16.6767 2.91122 15.7395 2.96725 14.8821 3.29451C14.0247 3.62177 13.2884 4.20446 12.773 4.96377C12.2575 5.72309 11.9877 6.62239 12 7.54006V8.54006C10.2426 8.58562 8.50127 8.19587 6.93101 7.4055C5.36074 6.61513 4.01032 5.44869 3 4.01006C3 4.01006 -1 13.0101 8 17.0101C5.94053 18.408 3.48716 19.109 1 19.0101C10 24.0101 21 19.0101 21 7.51006C20.9991 7.23151 20.9723 6.95365 20.92 6.68006C21.9406 5.67355 22.6608 4.40277 23 3.01006Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg width="16" height="16" fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 9H2V21H6V9Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg width="16" height="16" fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 9H15.01" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 9H9.01" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 15C9 15 10 17 12 17C14 17 15 15 15 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Ecosystem</a></li>
+                        <li><a href="#">Technology</a></li>
+                        <li><a href="#">Institutions</a></li>
+                        <li><a href="#">Developers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Get connected</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">X</a></li>
+                        <li><a href="#">Telegram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Run animations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements that should appear on page load
+            setTimeout(function() {
+                document.querySelectorAll('.animated').forEach(function(el) {
+                    el.classList.add('fade-in');
+                });
+            }, 100);
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+            
+            // Dot navigation
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    // Remove active class from all dots
+                    dots.forEach(d => d.classList.remove('active'));
+                    // Add active class to clicked dot
+                    this.classList.add('active');
+                });
+            });
+            
+            // Animation on scroll
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.animated:not(.fade-in)');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.classList.add('fade-in');
+                    }
+                });
+            }
+            
+            // Run on scroll
+            window.addEventListener('scroll', animateOnScroll);
+            // Run once on load
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
+                                
