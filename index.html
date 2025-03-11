@@ -104,6 +104,7 @@
         .hero-content {
             width: 40%;
             padding-right: 2rem;
+            margin-left: 160px;
         }
         
         .hero-video {
@@ -419,6 +420,16 @@
             margin-bottom: 3rem;
         }
         
+        .competition {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .competition-image {
+            width: 60%;
+        }
         .rayls-features {
             display: flex;
             justify-content: center;
@@ -606,17 +617,37 @@
         @media (max-width: 992px) {
             .hero-container {
                 flex-direction: column;
+                align-items: center;
             }
             
             .hero-content, .hero-video {
                 width: 100%;
+                margin-left: 10;
             }
             
             .hero-content {
                 margin-bottom: 2rem;
                 padding-right: 0;
+                margin-left: 10px;
             }
             
+            .feature-cards {
+            display: flex;
+            /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        .rayls-features {
+            display: flex;
+            justify-content: left;
+            align-items: left;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .competition-image {
+            width: 100%;
+        }
             .cta-container {
                 flex-direction: column;
                 text-align: center;
@@ -653,6 +684,7 @@
                 margin-right: 2rem;
                 margin-bottom: 2rem;
             }
+
         }
         
         @media (max-width: 768px) {
@@ -695,7 +727,7 @@
             
             .rayls-features {
                 flex-direction: column;
-                align-items: center;
+                align-items: left;
             }
             
             .hero-btns, .cta-btns {
@@ -791,7 +823,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hero-content animated" style="margin-left: 160px;">
+            <div class="hero-content animated">
                 <h1>The blockchain for banks</h1>
                 <p>Rayls is a fast, permissionless, compliant EVM blockchain that aims to bring $100 trillion liquidity and 6 billion bank customers onchain</p>
                 <div class="hero-btns">
@@ -980,6 +1012,10 @@
                     <span>Privacy and Compliance built in</span>
                 </div>
             </div>
+        </div>
+        <div class="competition" display="flex" flex-direction="row">
+            <img src="images/EPIC Report Table.png" alt="Rayls competitors" class="competition-image">
+            <a href="https://www.jpmorgan.com/kinexys/documents/JPMC-Kinexys-Project-Epic-Whitepaper-2024.pdf">Full EPIC Report by JP Morgan</a>
         </div>
     </section>
 
